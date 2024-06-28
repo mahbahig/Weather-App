@@ -1,3 +1,35 @@
+:root {
+    --light-blue: #009ad8;
+}
+
 .bg-dark-blue {
     background-color: #1e202b;
+}
+
+.h-fit {
+    height: fit-content;
+}
+
+.navbar .nav-item .nav-link {
+    padding: 10px;
+    transition: all 100ms;
+}
+
+.navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    border: 2px solid transparent;
+    transition: all 100ms;
+}
+
+.navbar .nav-item:hover .nav-link::before {
+    border: solid 2px var(--light-blue);
+    border-radius: 50rem;
+}
+.navbar .nav-item:hover .nav-link {
+    color: var(--light-blue) !important;
 }
