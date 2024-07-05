@@ -1,6 +1,6 @@
 :root {
     --button-blue: #009ad8;
-    --dark-blue: #1e202b;
+    --dark-blue: #222530;
     --light-blue: #323544;
 }
 
@@ -10,6 +10,10 @@
 
 .bg-light-blue {
     background-color: var(--light-blue);
+}
+
+.bg-dark-card {
+    background-color: #262936;
 }
 
 .bg-light-header {
