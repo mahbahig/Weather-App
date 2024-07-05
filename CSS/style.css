@@ -1,9 +1,22 @@
 :root {
-    --light-blue: #009ad8;
+    --button-blue: #009ad8;
+    --dark-blue: #1e202b;
+    --light-blue: #323544;
 }
 
 .bg-dark-blue {
-    background-color: #1e202b;
+    background-color: var(--dark-blue);
+}
+
+.bg-light-blue {
+    background-color: var(--light-blue);
+}
+
+.bg-light-header {
+    background-color: #2d303d;
+}
+.bg-dark-header {
+    background-color: #222530;
 }
 
 .h-fit {
@@ -27,9 +40,71 @@
 }
 
 .navbar .nav-item:hover .nav-link::before {
-    border: solid 2px var(--light-blue);
+    border: solid 2px var(--button-blue);
     border-radius: 50rem;
 }
+
 .navbar .nav-item:hover .nav-link {
-    color: var(--light-blue) !important;
+    color: var(--button-blue) !important;
+}
+
+.vh-80 {
+    height: 100vh;
+}
+
+input::placeholder {
+    color: gray !important;
+}
+
+#search {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+#search::before {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+#search::after {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+#search:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+.btn-submit {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--button-blue);
+    --bs-btn-border-color: var(--button-blue);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--button-blue);
+    --bs-btn-hover-border-color: var(--button-blue);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--button-blue);
+    --bs-btn-active-border-color: var(--button-blue);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--button-blue);
+    --bs-btn-disabled-border-color: var(--button-blue);
+}
+
+.fs-90 {
+    font-size: 90px;
+}
+
+.text-gray {
+    color: gray !important;
+}
+
+.rotate-45 {
+    transform: rotate(45deg);
 }
