@@ -65,28 +65,28 @@
             <div class="card-group w-100 my-5">
                 <div class="card bg-light-blue text-white">
                     <div class="card-header bg-light-header text-white d-flex justify-content-between">
-                        <small class="text-white">Friday</small>
-                        <small class="text-white">5 July</small>
+                        <small id="today" class="text-gray">..</small>
+                        <small id="date" class="text-gray">..</small>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Cairo</p>
-                        <h5 class="card-title fs-90">34.1°C</h5>
+                    <div class="card-body py-4">
+                        <p id="city" class="card-text text-gray"></p>
+                        <h5  class="card-title fs-90"><span id="currentTemp"></span>°C</h5>
                         <p class="card-text">
                             <i class="fa-solid fa-sun text-warning fs-1"></i>
                         </p>
-                        <p class="card-text text-primary">Sunny</p>
+                        <p class="card-text text-primary" id="status"></p>
                         <div class="d-flex w-75 justify-content-between">
                             <p class="card-text d-flex align-items-center column-gap-1 text-gray">
                                 <i class="fa-solid fa-umbrella fs-4 text-gray rotate-45"></i>
-                                20%
+                                <span id="rain"></span>%
                             </p>
                             <p class="card-text d-flex align-items-center column-gap-1 text-gray">
                                 <i class="fa-solid fa-wind fs-4 text-gray"></i>
-                                18km/h
+                                <span id="wind"></span>km/h
                             </p>
                             <p class="card-text d-flex align-items-center column-gap-1 text-gray mb-3">
                                 <i class="fa-regular fa-compass fs-4 text-gray rotate-45"></i>
-                                East
+                                <span id="direction"></span>
                             </p>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="card-header bg-dark-blue text-white d-flex justify-content-center">
                         <small class="text-white">Friday</small>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body py-4 text-center">
                         <p class="card-text my-5">
                             <i class="fa-solid fa-sun text-warning fs-1"></i>
                         </p>
@@ -108,7 +108,7 @@
                     <div class="card-header bg-light-header text-white d-flex justify-content-center">
                         <small class="text-white">Friday</small>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body py-4 text-center">
                         <p class="card-text my-5">
                             <i class="fa-solid fa-sun text-warning fs-1"></i>
                         </p>
@@ -124,6 +124,7 @@
 
     <script src="https://kit.fontawesome.com/65721112fc.js" crossorigin="anonymous"></script>
     <script src="JS/bootstrap.min.js"></script>
+    <script src="JS/index.js"></script>
     <script src="JS/index.js"></script>
 </body>
 
