@@ -5,12 +5,17 @@ const forecastUrl = '/forecast.json';
 const city = document.querySelector('#city');
 const currentTemp = document.querySelector('#currentTemp');
 const today = document.querySelector('#today');
+const tomorrow = document.querySelector('#tomorrow');
+const afterTom = document.querySelector('#afterTom');
 const date = document.querySelector('#date');
 const stat = document.querySelector('#status');
 const rain = document.querySelector('#rain');
 const wind = document.querySelector('#wind');
 const direction = document.querySelector('#direction');
-// const date = document.querySelector('#date');
+const tomMax = document.querySelector('#tomMax');
+const tomMin = document.querySelector('#tomMin');
+const afterTomMax = document.querySelector('#afterTomMax');
+const afterTomMin = document.querySelector('#afterTomMin');
 
 async function getResponse() {
     let data = await fetch(`${baseUrl}${forecastUrl}?key=${key}&q=Cairo&days=3`);
@@ -18,23 +23,44 @@ async function getResponse() {
 
     city.innerHTML = finalData.location.name;
     currentTemp.innerHTML = finalData.current.temp_c;
-    date.innerHTML = formatDate(true);
-    today.innerHTML = formatDate(false);
+    date.innerHTML = formatDate('date');
+    today.innerHTML = formatDate('today');
+    tomorrow.innerHTML = formatDate('tom');
+    afterTom.innerHTML = formatDate('afterTom');
     stat.innerHTML = finalData.forecast.forecastday[0].day.condition.text;
     rain.innerHTML = finalData.current.humidity;
     wind.innerHTML = finalData.current.wind_kph;
+    tomMax.innerHTML = finalData.forecast.forecastday[1].day.maxtemp_c
+    tomMin.innerHTML = finalData.forecast.forecastday[1].day.mintemp_c
+    afterTomMax.innerHTML = finalData.forecast.forecastday[2].day.maxtemp_c
+    afterTomMin.innerHTML = finalData.forecast.forecastday[2].day.mintemp_c
     direction.innerHTML = directions(finalData.current.wind_dir);
 }
 
 function formatDate(flag) {
     let date = new Date();
-    let day = date.getDate();
-    let month = date.toLocaleString('default', { month: 'long' });
-    let weekday = date.toLocaleString('default', { weekday: 'long' });
 
-    if (flag == true) {return `${day} ${month}`;}
-    else if (flag == false) {return `${weekday}`;}
+    if (flag == 'date') {
+        let day = date.getDate();
+        let month = date.toLocaleString('default', { month: 'long' });
+        return `${day} ${month}`;
+    }
+    else if (flag == 'today') {
+        let weekday = date.toLocaleString('default', { weekday: 'long' });
+        return `${weekday}`;
+    }
+    else if (flag == 'tom') {
+        date.setDate(date.getDate() + 1);
+        let tomorrowDayName = date.toLocaleString('default', { weekday: 'long' });
+        return `${tomorrowDayName}`;
+    }
+    else if (flag == 'afterTom') {
+        date.setDate(date.getDate() + 2);
+        let afterTomorrowDayName = date.toLocaleString('default', { weekday: 'long' });
+        return `${afterTomorrowDayName}`;
+    }
 }
+
 function directions(flag) {
     switch (flag) {
         case 'N': return 'North';
