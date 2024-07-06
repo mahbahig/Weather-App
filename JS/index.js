@@ -18,7 +18,8 @@ const afterTomMax = document.querySelector('#afterTomMax');
 const afterTomMin = document.querySelector('#afterTomMin');
 
 async function getResponse() {
-    let data = await fetch(`${baseUrl}${forecastUrl}?key=${key}&q=Cairo&days=3`);
+    // let data = await fetch(`${baseUrl}${forecastUrl}?key=${key}&q=Cairo&days=3`);
+    let data = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=ffbffdcda0644538b3d113835240407&q=Cairo&days=3`);
     let finalData = await data.json();
 
     city.innerHTML = finalData.location.name;
@@ -72,4 +73,4 @@ function directions(flag) {
 
 getResponse();
 
-// http://api.weatherapi.com/v1/forecast.json?key=ffbffdcda0644538b3d113835240407&q=Cairo
+// http://api.weatherapi.com/v1/forecast.json?key=ffbffdcda0644538b3d113835240407&q=Cairo&days=3
