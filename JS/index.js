@@ -18,6 +18,9 @@ const tomMax = document.querySelector('#tomMax');
 const tomMin = document.querySelector('#tomMin');
 const afterTomMax = document.querySelector('#afterTomMax');
 const afterTomMin = document.querySelector('#afterTomMin');
+const weatherIcon = document.querySelector('#icon');
+const tomIcon = document.querySelector('#tomIcon');
+const afterTomIcon = document.querySelector('#afterTomIcon');
 
 async function getResponse() {
     let data = await fetch(`${baseUrl}${forecastUrl}?key=${key}&q=Cairo&days=3`);
@@ -35,11 +38,14 @@ async function getResponse() {
     statAfterTom.innerHTML = finalData.forecast.forecastday[0].day.condition.text;
     rain.innerHTML = finalData.current.humidity;
     wind.innerHTML = finalData.current.wind_kph;
-    tomMax.innerHTML = finalData.forecast.forecastday[1].day.maxtemp_c
-    tomMin.innerHTML = finalData.forecast.forecastday[1].day.mintemp_c
-    afterTomMax.innerHTML = finalData.forecast.forecastday[2].day.maxtemp_c
-    afterTomMin.innerHTML = finalData.forecast.forecastday[2].day.mintemp_c
+    tomMax.innerHTML = finalData.forecast.forecastday[1].day.maxtemp_c;
+    tomMin.innerHTML = finalData.forecast.forecastday[1].day.mintemp_c;
+    afterTomMax.innerHTML = finalData.forecast.forecastday[2].day.maxtemp_c;
+    afterTomMin.innerHTML = finalData.forecast.forecastday[2].day.mintemp_c;
     direction.innerHTML = directions(finalData.current.wind_dir);
+    weatherIcon.src = `https:${finalData.current.condition.icon}`;
+    tomIcon.src = `https:${finalData.forecast.forecastday[1].day.condition.icon}`;
+    afterTomIcon.src = `https:${finalData.forecast.forecastday[2].day.condition.icon}`;
 }
 
 function formatDate(flag) {
