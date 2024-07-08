@@ -112,3 +112,7 @@ input::placeholder {
 .rotate-45 {
     transform: rotate(45deg);
 }
+
+.vh-60 {
+    height: 60vh;
+}

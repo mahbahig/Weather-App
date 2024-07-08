@@ -22,30 +22,48 @@ const weatherIcon = document.querySelector('#icon');
 const tomIcon = document.querySelector('#tomIcon');
 const afterTomIcon = document.querySelector('#afterTomIcon');
 
-async function getResponse() {
-    let data = await fetch(`${baseUrl}${forecastUrl}?key=${key}&q=Cairo&days=3`);
-    // let data = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=ffbffdcda0644538b3d113835240407&q=Cairo&days=3`);
-    let finalData = await data.json();
+const search = document.querySelector("#search");
+const searchBtn = document.querySelector("#searchBtn");
 
-    city.innerHTML = finalData.location.name;
-    currentTemp.innerHTML = finalData.current.temp_c;
-    date.innerHTML = formatDate('date');
-    today.innerHTML = formatDate('today');
-    tomorrow.innerHTML = formatDate('tom');
-    afterTom.innerHTML = formatDate('afterTom');
-    stat.innerHTML = finalData.forecast.forecastday[0].day.condition.text;
-    statTom.innerHTML = finalData.forecast.forecastday[0].day.condition.text;
-    statAfterTom.innerHTML = finalData.forecast.forecastday[0].day.condition.text;
-    rain.innerHTML = finalData.current.humidity;
-    wind.innerHTML = finalData.current.wind_kph;
-    tomMax.innerHTML = finalData.forecast.forecastday[1].day.maxtemp_c;
-    tomMin.innerHTML = finalData.forecast.forecastday[1].day.mintemp_c;
-    afterTomMax.innerHTML = finalData.forecast.forecastday[2].day.maxtemp_c;
-    afterTomMin.innerHTML = finalData.forecast.forecastday[2].day.mintemp_c;
-    direction.innerHTML = directions(finalData.current.wind_dir);
-    weatherIcon.src = `https:${finalData.current.condition.icon}`;
-    tomIcon.src = `https:${finalData.forecast.forecastday[1].day.condition.icon}`;
-    afterTomIcon.src = `https:${finalData.forecast.forecastday[2].day.condition.icon}`;
+let loc = '';
+
+search.addEventListener('input', function (event) {
+    loc = event.target.value;
+    getResponse(loc)
+});
+
+searchBtn.addEventListener('click', function () {
+    getResponse(loc);
+});
+
+async function getResponse(loc) {
+    try {
+        let data = await fetch(`${baseUrl}${forecastUrl}?key=${key}&q=${loc}&days=3`);
+        let finalData = await data.json();
+
+        city.innerHTML = finalData.location.name;
+        currentTemp.innerHTML = finalData.current.temp_c;
+        date.innerHTML = formatDate('date');
+        today.innerHTML = formatDate('today');
+        tomorrow.innerHTML = formatDate('tom');
+        afterTom.innerHTML = formatDate('afterTom');
+        stat.innerHTML = finalData.forecast.forecastday[0].day.condition.text;
+        statTom.innerHTML = finalData.forecast.forecastday[1].day.condition.text;
+        statAfterTom.innerHTML = finalData.forecast.forecastday[2].day.condition.text;
+        rain.innerHTML = finalData.current.humidity;
+        wind.innerHTML = finalData.current.wind_kph;
+        tomMax.innerHTML = finalData.forecast.forecastday[1].day.maxtemp_c;
+        tomMin.innerHTML = finalData.forecast.forecastday[1].day.mintemp_c;
+        afterTomMax.innerHTML = finalData.forecast.forecastday[2].day.maxtemp_c;
+        afterTomMin.innerHTML = finalData.forecast.forecastday[2].day.mintemp_c;
+        direction.innerHTML = directions(finalData.current.wind_dir);
+        weatherIcon.src = `https:${finalData.current.condition.icon}`;
+        tomIcon.src = `https:${finalData.forecast.forecastday[1].day.condition.icon}`;
+        afterTomIcon.src = `https:${finalData.forecast.forecastday[2].day.condition.icon}`;
+    }
+    catch (error) {
+        console.error("Error fetching the weather data:", error);
+    }
 }
 
 function formatDate(flag) {
@@ -73,7 +91,7 @@ function formatDate(flag) {
 }
 
 function directions(flag) {
-    let direction = flag.charAt(flag.length - 1)
+    let direction = flag.charAt(flag.length - 1);
     switch (direction) {
         case 'N': return 'North';
         case 'E': return 'East';
@@ -82,6 +100,4 @@ function directions(flag) {
     }
 }
 
-getResponse();
-
-// https://api.weatherapi.com/v1/forecast.json?key=ffbffdcda0644538b3d113835240407&q=Cairo&days=3
+getResponse('Cairo');
